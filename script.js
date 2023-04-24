@@ -223,8 +223,8 @@ const showTimer = () => {
         let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
         let seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
 
-        minutes.toString().padStart(2, '0');
-        seconds.toString().padStart(2, '0');
+        minutes = minutes.toString().padStart(2, '0');
+        seconds = seconds.toString().padStart(2, '0');
 
         timerElem.innerHTML = `${minutes}:${seconds}`;
 
