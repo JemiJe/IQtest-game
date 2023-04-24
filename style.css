@@ -234,7 +234,7 @@ span.textEm-2 {
     align-items: center;
 
     background-image: url("images/rain_bk.png");
-    background-position: 0 -2em;
+    background-position-y: 23%;
     background-size: cover;
 }
 
@@ -291,7 +291,8 @@ span.textEm-2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    bottom: -3em;
+    bottom: -4em;
+    font-size: 1.2em;
 }
 
 .sectionResumeBtn>div {
@@ -520,7 +521,7 @@ span.textEm-2 {
 
 .resultsSection footer {
     position: absolute;
-    top: 88vh;
+    top: 90vh;
     padding: 0 2em;
 
     font-family: 'Roboto', sans-serif;
@@ -813,6 +814,10 @@ input[type="radio"]:checked::before {
         padding: 0 6em;
     }
 
+    .section-1 {
+        background-position-y: 40%;
+    }
+
     .menu.menu_on {
         width: 350px;
     }
@@ -834,6 +839,10 @@ input[type="radio"]:checked::before {
     section[class^="section-"],
     .resultsSection {
         padding: 0 20em;
+    }
+
+    .section-1 {
+        background-position-y: 26%;
     }
 
     .testSection .content {
