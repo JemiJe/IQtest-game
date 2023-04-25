@@ -205,7 +205,7 @@ const resetAnswers = () => {
 // progress bar renderer
 const progressBarElem = document.querySelector('.progressBarFront');
 const progressBarUpdate = currentProgresNum => {
-    let progressPercent = ((currentProgresNum + 1) * 100) / maxQuestionNumber;
+    let progressPercent = ((currentProgresNum) * 100) / maxQuestionNumber;
     progressBarElem.style.cssText = `width: ${Math.round(progressPercent)}%`;
 };
 
@@ -328,9 +328,10 @@ document.querySelector('body').addEventListener('click', e => {
 
     if (e.target.id === 'testSubmit' && !e.target.classList.value.includes('btnInactive')) {
         handleAnswer(currentQuestionNumber);
-        if (currentQuestionNumber < maxQuestionNumber - 1) makeQuestionForm(testGameQuestions[++currentQuestionNumber]);
+        currentQuestionNumber++;
+        if (currentQuestionNumber < maxQuestionNumber) makeQuestionForm(testGameQuestions[currentQuestionNumber]);
         progressBarUpdate(currentQuestionNumber);
-        if (currentQuestionNumber === maxQuestionNumber - 1) computingResultsPage.on();
+        if (currentQuestionNumber === maxQuestionNumber) computingResultsPage.on();
     }
 
     if (e.target.id === 'testCall' || e.target.parentElement.id === 'testCall') {
