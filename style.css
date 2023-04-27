@@ -519,6 +519,8 @@ span.textEm-2 {
     transform: rotate(337deg);
 }
 
+/* footer (according to task description) should appears a few lines at the bottom  */
+/* as ~80% of results page on phones is content, better put footer right after call button to fit condition */
 .resultsSection footer {
     padding: 1.5em 2em 0;
 
@@ -860,6 +862,13 @@ input[type="radio"]:checked::before {
 
     .testHeader {
         position: fixed;
+    }
+
+    /* footer (according to task description) should appears a few lines at the bottom  */
+    /* option for widescreens  */
+    .resultsSection footer {
+        position: absolute;
+        top: 87vh;
     }
 }
 
