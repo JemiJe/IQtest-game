@@ -1,10 +1,9 @@
-
 // IQtest game ver. 0.1
 // user answers data stored in userAnswersObj
 
 // questions consts
 const testGameColorsOptions = ['#A8A8A8', '#0000A9', '#00A701', '#F60100', '#FDFF19', '#A95403', '#000000', '#850068', '#46B2AC'];
-const testGameColorsOptionsReadable = ['grey', 'blue', 'green', 'red', 'yellow', 'brown', 'black', 'purple', 'cyan'];
+// const testGameColorsOptionsReadable = ['grey', 'blue', 'green', 'red', 'yellow', 'brown', 'black', 'purple', 'cyan'];
 const testGameQuestions = [
     {
         type: 'options-vertical',
@@ -93,15 +92,15 @@ document.querySelector('#hamburger').addEventListener('click', () => {
 
 // toggle between test and home page
 const testGamePage = {
-    on: () => {
+    on() {
         [...startPageContent].forEach(elem => elem.classList.add('hidden'));
         [...testGameElems].forEach(elem => elem.classList.remove('hidden'));
     },
-    off: () => {
+    off() {
         [...startPageContent].forEach(elem => elem.classList.remove('hidden'));
         [...testGameElems].forEach(elem => elem.classList.add('hidden'));
     },
-    results: () => {
+    results() {
         document.querySelector('section.testSection').classList.add('hidden');
 
         let testHeader = document.querySelector('.testHeader');
@@ -134,17 +133,17 @@ const makeOptions = (optionsArr, typeClassName) => {
 
     let optionsElemsStr = optionsArrCopy.reduce((resultStr, optionValue) => {
 
+        const isColorOption = typeClassName === 'optionHorizontal optionColor';
         let cusomStyle = '';
-        let dataValue = optionValue;
-        if (typeClassName === 'optionHorizontal optionColor') {
+        
+        if (isColorOption) {
             cusomStyle = `background-color: ${optionValue}`;
-            optionValue = '';
         }
 
         let optionElem = `
             <label class="optionLabel ${typeClassName}" style="${cusomStyle}">
-                <input type="radio" name="radio" data-value="${dataValue}"/>
-                ${optionValue}
+                <input type="radio" name="radio" data-value="${optionValue}"/>
+                ${ isColorOption ? '' : optionValue }
             </label>
         `;
 
