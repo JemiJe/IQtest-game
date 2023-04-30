@@ -444,7 +444,7 @@ span.textEm-2 {
 .resultsSection {
     position: relative;
     margin-top: 46px;
-    height: 150vh;
+    min-height: 100vh;
     text-align: center;
 
     display: flex;
@@ -508,13 +508,13 @@ span.textEm-2 {
 }
 
 .resultsSection .lightning-1 {
-    top: 46%;
+    top: 67vh;
     right: -8em;
     transform: rotate(284deg);
 }
 
 .resultsSection .lightning-2 {
-    top: 37%;
+    top: 57vh;
     left: -2em;
     transform: rotate(337deg);
 }
