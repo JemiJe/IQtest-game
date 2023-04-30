@@ -655,6 +655,7 @@ span.textEm-2 {
 .testSection .content .question {
     padding: 0 1em;
     text-align: center;
+    margin-top: 1.3em;
 }
 
 .testSection .content .options {

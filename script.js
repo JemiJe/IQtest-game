@@ -1,9 +1,10 @@
-// IQtest game ver. 0.1
+// IQtest game ver. 0.1.1
 // user answers data stored in userAnswersObj
 
 // questions consts
 const testGameColorsOptions = ['#A8A8A8', '#0000A9', '#00A701', '#F60100', '#FDFF19', '#A95403', '#000000', '#850068', '#46B2AC'];
-// const testGameColorsOptionsReadable = ['grey', 'blue', 'green', 'red', 'yellow', 'brown', 'black', 'purple', 'cyan'];
+
+// scalable and customizable
 const testGameQuestions = [
     {
         type: 'options-vertical',
@@ -128,20 +129,21 @@ const testSubmitBtn = document.querySelector('#testSubmit');
 const makeOptions = (optionsArr, typeClassName) => {
 
     let optionsArrCopy = [...optionsArr];
+    
     // randomizing color selection each time
     if (typeClassName === 'optionHorizontal optionColor') optionsArrCopy.sort(() => Math.random() > 0.5 ? 1 : -1);
 
     let optionsElemsStr = optionsArrCopy.reduce((resultStr, optionValue) => {
 
         const isColorOption = typeClassName === 'optionHorizontal optionColor';
-        let cusomStyle = '';
+        let customStyle = '';
         
         if (isColorOption) {
-            cusomStyle = `background-color: ${optionValue}`;
+            customStyle = `background-color: ${optionValue}`;
         }
 
         let optionElem = `
-            <label class="optionLabel ${typeClassName}" style="${cusomStyle}">
+            <label class="optionLabel ${typeClassName}" style="${customStyle}">
                 <input type="radio" name="radio" data-value="${optionValue}"/>
                 ${ isColorOption ? '' : optionValue }
             </label>
@@ -153,8 +155,8 @@ const makeOptions = (optionsArr, typeClassName) => {
     return optionsElemsStr;
 };
 
-const makeQuestionForm = questionObj => {
-    let { type, question, image, options } = questionObj;
+const makeQuestionForm = ({ type, question, image, options }) => {
+    
     questionNameElem.innerHTML = `<span>${question}</span>`;
     questionImg.innerHTML = `<img src="/images/${image}" alt="">`;
 
@@ -177,6 +179,7 @@ const makeQuestionForm = questionObj => {
     testSubmitBtn.classList.add('btnInactive');
 };
 
+// handle user answers and store it in variable 
 let userAnswersObj = {
     answers: []
 };
@@ -254,6 +257,7 @@ const computingResultsPage = {
         }, 2000 * Math.random() + 2000);
     }
 };
+
 // showing resulting page after timeout of computing animation page
 document.addEventListener('computingResultsPage.timeOver', () => {
     testGamePage.results();
@@ -287,11 +291,14 @@ const showDataFromServer = () => {
 
     let url = 'https://swapi.dev/api/people/1/';
     fetch(url)
-        .then(response => response.json())
+        .then(response => {
+            return response.ok ? response.json() : {error: 'ошибка подключения к серверу'};
+        })
         .then(data => {
             document.querySelector('#requestOutput').classList.remove('hidden');
             document.querySelector('#requestOutput').innerHTML = handleReqData(data);
-        });
+        })
+        .catch(err => console.error(err));
 };
 
 // main clicks handler
